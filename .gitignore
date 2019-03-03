@@ -2,3 +2,11 @@ GrajaProject/.vs
 GrajaProject/GrajaProject/GrajaProject.Android/obj
 GrajaProject/GrajaProject/GrajaProject.iOS/obj
 GrajaProject/GrajaProject/GrajaProject/obj
+GrajaProject/GrajaProject.UnitTests/bin
+GrajaProject/GrajaProject.UnitTests/obj
+GrajaProject/GrajaProject/GrajaProject.Android/bin
+GrajaProject/GrajaProject/GrajaProject.iOS/bin
+GrajaProject/GrajaProject/GrajaProject/bin/Debug
+GrajaProject/LLParsers/bin/Debug
+GrajaProject/LLParsers/obj
+GrajaProject/packages
