@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using LLParsers.Arithmetic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -43,9 +43,10 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 
         private bool testicek ()
         {
-            Parser.Init(analyze.Tokenizer);
+            Analyze analyze = new Analyze(this.input.Text);
+            Grammar.S(analyze);
 
-            return Parser.Parse();
+            return Grammar.Parseable;
         }
 
 

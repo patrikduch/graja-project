@@ -32,10 +32,18 @@ namespace LLParser.Lexer
                 {
                     stringBuilder.Append(" ");
                 }
+
+                if (char.IsLetter(i))
+                {
+                    stringBuilder.Append(" ");
+                }
+
+
                 stringBuilder.Append(i);
+                stringBuilder.Append(" ");
             }
 
-            stringBuilder.Append("$"); // Signalizace ukončení vstupu
+            stringBuilder.Append(" $"); // Signalizace ukončení vstupu
 
             return stringBuilder.ToString();
         }
