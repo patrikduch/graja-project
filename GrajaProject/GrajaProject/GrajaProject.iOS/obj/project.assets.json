@@ -129,6 +129,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "LLParsers": "1.0.0",
           "Xamarin.Forms": "3.4.0.1008975"
         },
         "compile": {
@@ -136,6 +137,16 @@
         },
         "runtime": {
           "bin/placeholder/GrajaProject.dll": {}
+        }
+      },
+      "LLParsers/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/LLParsers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LLParsers.dll": {}
         }
       }
     },
@@ -267,6 +278,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "LLParsers": "1.0.0",
           "Xamarin.Forms": "3.4.0.1008975"
         },
         "compile": {
@@ -274,6 +286,16 @@
         },
         "runtime": {
           "bin/placeholder/GrajaProject.dll": {}
+        }
+      },
+      "LLParsers/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/LLParsers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LLParsers.dll": {}
         }
       }
     },
@@ -405,6 +427,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "LLParsers": "1.0.0",
           "Xamarin.Forms": "3.4.0.1008975"
         },
         "compile": {
@@ -412,6 +435,16 @@
         },
         "runtime": {
           "bin/placeholder/GrajaProject.dll": {}
+        }
+      },
+      "LLParsers/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/LLParsers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LLParsers.dll": {}
         }
       }
     },
@@ -543,6 +576,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "LLParsers": "1.0.0",
           "Xamarin.Forms": "3.4.0.1008975"
         },
         "compile": {
@@ -550,6 +584,16 @@
         },
         "runtime": {
           "bin/placeholder/GrajaProject.dll": {}
+        }
+      },
+      "LLParsers/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/LLParsers.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LLParsers.dll": {}
         }
       }
     }
@@ -705,6 +749,11 @@
       "type": "project",
       "path": "../GrajaProject/GrajaProject.csproj",
       "msbuildProject": "../GrajaProject/GrajaProject.csproj"
+    },
+    "LLParsers/1.0.0": {
+      "type": "project",
+      "path": "../../LLParsers/LLParsers.csproj",
+      "msbuildProject": "../../LLParsers/LLParsers.csproj"
     }
   },
   "projectFileDependencyGroups": {

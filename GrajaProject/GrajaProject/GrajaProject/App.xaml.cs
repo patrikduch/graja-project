@@ -1,4 +1,5 @@
 ﻿using System;
+using GrajaProjekt.Resources.Pages.LLParsers.Arithmetic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +12,7 @@ namespace GrajaProject
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ArithmeticParser();
         }
 
         protected override void OnStart()

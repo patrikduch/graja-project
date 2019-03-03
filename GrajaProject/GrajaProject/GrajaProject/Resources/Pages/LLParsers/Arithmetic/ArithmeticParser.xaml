@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrajaProjekt.Resources.Pages.LLParsers.Arithmetic.ArithmeticParser">
+
+    <AbsoluteLayout>
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,20" AbsoluteLayout.LayoutFlags="All">
+
+            <Entry TextChanged="Entry_InputChanged_Event" Placeholder="Zadejte výraz" x:Name="input" BackgroundColor="Gray"></Entry>
+            <Label x:Name="testik" />
+        </StackLayout>
+
+
+
+        <Grid AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" AbsoluteLayout.LayoutFlags="All" Margin="0,40,0,0" BackgroundColor="Black">
+
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
+                <ColumnDefinition Width="0.25*"></ColumnDefinition>
+
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+                <RowDefinition Height="55"></RowDefinition>
+
+
+            </Grid.RowDefinitions>
+
+
+            <Button Clicked="Button_EnterInput_Event"
+                    Text="+" FontSize="20" Grid.Column="0" Grid.Row="0" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="-" FontSize="20" Grid.Column="1" Grid.Row="0" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="*" FontSize="20" Grid.Column="2" Grid.Row="0" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="/" FontSize="20" Grid.Column="3" Grid.Row="0" BackgroundColor="Bisque"/>
+
+            <Button Clicked="Button_EnterInput_Event" Text="(" FontSize="20" Grid.Column="0" Grid.Row="1" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text=")" FontSize="20" Grid.Column="1" Grid.Row="1" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="0" FontSize="20" Grid.Column="2" Grid.Row="1" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="1" FontSize="20" Grid.Column="3" Grid.Row="1" BackgroundColor="Bisque"/>
+
+            <Button Clicked="Button_EnterInput_Event" Text="2" FontSize="20" Grid.Column="0" Grid.Row="2" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="3" FontSize="20" Grid.Column="1" Grid.Row="2" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="4" FontSize="20" Grid.Column="2" Grid.Row="2" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="5" FontSize="20" Grid.Column="3" Grid.Row="2" BackgroundColor="Bisque"/>
+
+
+            <Button Clicked="Button_EnterInput_Event" Text="6" FontSize="20" Grid.Column="0" Grid.Row="3" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="7" FontSize="20" Grid.Column="1" Grid.Row="3" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="8" FontSize="20" Grid.Column="2" Grid.Row="3" BackgroundColor="Bisque"/>
+            <Button Clicked="Button_EnterInput_Event" Text="9" FontSize="20" Grid.Column="3" Grid.Row="3" BackgroundColor="Bisque"/>
+
+        </Grid>
+
+
+
+    </AbsoluteLayout>
+
+
+
+</ContentPage>
