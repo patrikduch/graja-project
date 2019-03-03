@@ -43,22 +43,9 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 
         private bool testicek ()
         {
-            var tmp = Parser.init(analyze.Tokenizer);
+            Parser.Init(analyze.Tokenizer);
 
-            if (Parser.curr == "$")
-            {
-                Console.WriteLine("OK");
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("NOK");
-                return false;
-
-            }
-
-            
-
+            return Parser.Parse();
         }
 
 

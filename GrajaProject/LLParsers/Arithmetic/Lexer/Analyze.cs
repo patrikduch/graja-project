@@ -28,9 +28,11 @@ namespace LLParser.Lexer
 
             foreach (var i in input)
             {
-                stringBuilder.Append(" ");
+                if (i == '+')
+                {
+                    stringBuilder.Append(" ");
+                }
                 stringBuilder.Append(i);
-                stringBuilder.Append(" ");
             }
 
             stringBuilder.Append("$"); // Signalizace ukončení vstupu
