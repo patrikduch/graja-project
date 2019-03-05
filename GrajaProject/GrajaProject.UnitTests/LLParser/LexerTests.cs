@@ -5,11 +5,10 @@
 // <author>Patrik Duch</author>
 // Unit test for lexer functionality
 //--------------------------------------------------------------------------------
-
-using System;
 using LLParser;
 using LLParser.Lexer;
 using LLParsers.Arithmetic;
+using LLParsers.Arithmetic.Lexer;
 
 namespace GrajaProject.UnitTests.LLParser
 {
@@ -18,22 +17,114 @@ namespace GrajaProject.UnitTests.LLParser
     [TestFixture()]
     public class LexerTests
     {
-        private Analyze _analyze;
-
-        // Test needs to be sucessfull
         [Test]
         public void TestInputForOnlySingleNumber()
         {
-            string testString = "(3-3)";
-            _analyze = new Analyze(testString);
+            var res = PolishNotation.PostFixFormat("3");
 
-            Grammar.S(_analyze);
+            var result = PolishNotation.IsParseable(res);
 
-            var res = Grammar.Parseable;
+            Assert.AreEqual(true, result);
+        }
+
+
+        [Test]
+        public void TestInputForOnlySingleNumberInBrackets()
+        {
+
+            var res = PolishNotation.PostFixFormat("(3)");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
 
         }
 
-        
-        
+
+
+        [Test]
+        public void TestInputForAdditionTwoNumbers()
+        {
+
+            var res = PolishNotation.PostFixFormat("3+3");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
+
+
+        }
+
+
+        [Test]
+        public void TestInputForAdditionTwoNumbersInBrackets()
+        {
+            var res = PolishNotation.PostFixFormat("(3+3)");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
+
+        }
+
+
+        [Test]
+        public void TestInputForAdditionTwoNumbersInBracketsWithExtraOperator()
+        {
+            var res = PolishNotation.PostFixFormat("(5+2)+3");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
+
+        }
+
+
+        [Test]
+        public void TestInputForOperatorInParentheses()
+        {
+
+            var res = PolishNotation.PostFixFormat("(+)");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(false, result);
+
+
+   
+        }
+
+
+        [Test]
+        public void TestInputForMultipleSameOperator()
+        {
+            string testString = "3--";
+            var res = PolishNotation.PostFixFormat("3--");
+
+            var result = PolishNotation.IsParseable(res);
+            Assert.AreEqual(false, result);
+
+        }
+
+
+        [Test]
+        public void TestInputForOperationOnToParanthese()
+        {
+            string testString = "3-33";
+
+
+
+
+            var res = PolishNotation.PostFixFormat("3-(33)-");
+
+            var result = PolishNotation.IsParseable(res);
+
+
+
+        }
+
+
+
+
     }
 }

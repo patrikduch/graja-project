@@ -763,20 +763,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ghost\\.nuget\\packages\\": {}
+    "C:\\Users\\Patrik Duch\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ghost\\Desktop\\Graja Projekt\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\GrajaProject.iOS.csproj",
+      "projectUniqueName": "D:\\Programming\\C#\\XAMARIN\\Graja project\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\GrajaProject.iOS.csproj",
       "projectName": "GrajaProject.iOS",
-      "projectPath": "C:\\Users\\ghost\\Desktop\\Graja Projekt\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\GrajaProject.iOS.csproj",
-      "packagesPath": "C:\\Users\\ghost\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ghost\\Desktop\\Graja Projekt\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\obj\\",
+      "projectPath": "D:\\Programming\\C#\\XAMARIN\\Graja project\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\GrajaProject.iOS.csproj",
+      "packagesPath": "C:\\Users\\Patrik Duch\\.nuget\\packages\\",
+      "outputPath": "D:\\Programming\\C#\\XAMARIN\\Graja project\\GrajaProject\\GrajaProject\\GrajaProject.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\ghost\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Patrik Duch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -789,8 +789,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\ghost\\Desktop\\Graja Projekt\\GrajaProject\\GrajaProject\\GrajaProject\\GrajaProject.csproj": {
-              "projectPath": "C:\\Users\\ghost\\Desktop\\Graja Projekt\\GrajaProject\\GrajaProject\\GrajaProject\\GrajaProject.csproj"
+            "D:\\Programming\\C#\\XAMARIN\\Graja project\\GrajaProject\\GrajaProject\\GrajaProject\\GrajaProject.csproj": {
+              "projectPath": "D:\\Programming\\C#\\XAMARIN\\Graja project\\GrajaProject\\GrajaProject\\GrajaProject\\GrajaProject.csproj"
             }
           }
         }

@@ -1,78 +1,164 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿//---------------------------------------------------------------------------------
+// <copyright file="PolishNotation" website="Patrikduch.com">
+//     Copyright 2019 (c) Patrikduch.com
+// </copyright>
+// <author>Patrik Duch</author>
+// Reverse polish notation implementation checker
+//--------------------------------------------------------------------------------
 namespace LLParsers.Arithmetic.Lexer
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class PolishNotation
     {
-        public static string PostFixFormat(string input)
+        private static IEnumerable<string> RemoveEmptyElements(string[] inputStrings)
         {
-            Stack<char> stack = new Stack<char>();
-            String str = input.Replace(" ", string.Empty);
-            StringBuilder formula = new StringBuilder();
-            for (int i = 0; i < str.Length; i++)
+            foreach (var inputString in inputStrings)
             {
-                char x = str[i];
-                if (x == '(')
-                    stack.Push(x);
-                else if (x == ')')
+
+                if (!inputString.Equals(""))
                 {
-                    while (stack.Count > 0 && stack.Peek() != '(')
-                        formula.Append(stack.Pop());
-                    stack.Pop();
+                    yield return inputString;
                 }
-                else if (IsOperandus(x))
+            }
+        }
+
+
+        public static bool IsParseable(string input)
+        {
+            Stack<string> operatorsStack = new Stack<string>();
+            Stack<string> operandsStack = new Stack<string>();
+
+
+            var res = input.Split(' ');
+
+            // Optimalize array
+
+            res = RemoveEmptyElements(res).ToArray();
+
+
+
+            // Processing operands and operators
+
+            foreach (var i in res)
+            {
+                if (i == "+" || i == "-")
                 {
-                    formula.Append(x);
-                }
-                else if (IsOperator(x))
-                {
-                    while (stack.Count > 0 && stack.Peek() != '(' && Prior(x) <= Prior(stack.Peek()))
-                        formula.Append(stack.Pop());
-                    stack.Push(x);
+                    operatorsStack.Push(i);
                 }
                 else
                 {
-                    char y = stack.Pop();
-                    if (y != '(')
-                        formula.Append(y);
+                    operandsStack.Push(i);
                 }
+
             }
-            while (stack.Count > 0)
+
+            if (operandsStack.Count == 0 && operatorsStack.Count > 0) return false;
+
+            // 3+3+ situation
+            if (operandsStack.Count == operatorsStack.Count) return false;
+
+
+        // Evaluation
+
+            Stack<string> resultOperands = new Stack<string>();
+
+            for (int i = 0; i < operatorsStack.Count; i++)
             {
-                formula.Append(stack.Pop());
+
+                if (operandsStack.Count > 0)
+                {
+                    if (operandsStack.Count >= 1 && operandsStack.Count <= 1)
+                    {
+                        return false;
+                    }
+
+                    if (operandsStack.Count != 1)
+                    {
+
+                        try
+                        {
+                            int.TryParse(operandsStack.Pop(), out var x);
+                            int.TryParse(operandsStack.Pop(), out var y);
+
+                            // Delete top of stack with operators
+                            operatorsStack.Pop();
+
+                            int result = x + y;
+
+                            resultOperands.Push(result.ToString());
+                        }
+
+                        catch (System.InvalidOperationException)
+                        {
+
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        int.TryParse(operandsStack.Pop(), out int x);
+
+                        resultOperands.Push(x.ToString());
+                    }
+
+
+
+
+
+
+                }
+                else
+                {
+                    operandsStack.Push(operandsStack.ElementAtOrDefault(i));
+                }
+
             }
-            return formula.ToString();
+
+
+            // If not popping is required
+            if (operatorsStack.Count == 0 || operandsStack.Count > 0) return true;
+
+            return operandsStack.Count == 0;
+
+
+
         }
 
-        static bool IsOperator(char c)
+        private static string CorrectStringFormat(string input)
         {
-            return (c == '-' || c == '+' || c == '*' || c == '/');
-        }
-        static bool IsOperandus(char c)
-        {
-            return (c >= '0' && c <= '9' || c == '.');
-        }
-        static int Prior(char c)
-        {
-            switch (c)
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < input.Length; i++)
             {
-                case '=':
-                    return 1;
-                case '+':
-                    return 2;
-                case '-':
-                    return 2;
-                case '*':
-                    return 3;
-                case '/':
-                    return 3;
-                case '^':
-                    return 4;
-                default:
-                    throw new ArgumentException("Error parameter");
+                if (input[i] == '(' || input[i] == ')') continue;
+
+
+                // Count number of brackets
+
+                if (input[i] == '-' || input[i] == '+' || input[i] == '/')
+                {
+                    sb.Append(' ');
+                    sb.Append(input[i]);
+                    sb.Append(' ');
+                    continue;
+                }
+                sb.Append(input[i]);
             }
+            return sb.ToString();
         }
+
+
+
+
+        public static string PostFixFormat(string input)
+        {
+            return CorrectStringFormat(input);
+        }
+
+        
     }
 }

@@ -1,17 +1,15 @@
-﻿using LLParser;
-using LLParser.Lexer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LLParsers.Arithmetic;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
+﻿namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    using global::LLParsers.Arithmetic.Lexer;
+    using LLParser;
+    using LLParser.Lexer;
+    using System;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
+
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArithmeticParser : ContentPage
 	{
 
@@ -21,13 +19,6 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 		public ArithmeticParser ()
 		{
 			InitializeComponent ();
-
-       
-
-           
-
-
-
         }
         
 
@@ -43,10 +34,12 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 
         private bool testicek ()
         {
-            Analyze analyze = new Analyze(this.input.Text);
-            Grammar.S(analyze);
 
-            return Grammar.Parseable;
+            var res = PolishNotation.PostFixFormat(this.input.Text);
+            var result = PolishNotation.IsParseable(res);
+
+
+            return result;
         }
 
 
