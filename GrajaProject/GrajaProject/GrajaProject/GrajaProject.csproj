@@ -10,14 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Pages\Navigation\**" />
+    <EmbeddedResource Remove="Resources\Pages\Navigation\**" />
+    <None Remove="Resources\Pages\Navigation\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.1" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Pages\Navigation\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\LLParsers\LLParsers.csproj" />
+    <ProjectReference Include="..\..\StringManipulation\StringManipulation.csproj" />
   </ItemGroup>
 </Project>

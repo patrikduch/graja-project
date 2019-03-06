@@ -1,14 +1,15 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="LexerTests" website="Patrikduch.com">
+// <copyright file="ParserTests" website="Patrikduch.com">
 //     Copyright 2017 (c) Patrikduch.com
 // </copyright>
 // <author>Patrik Duch</author>
 // Unit test for parser functionality
 //--------------------------------------------------------------------------------
 
+using LLParsers.Arithmetic.Parser;
+
 namespace GrajaProject.UnitTests.LLParser
 {
-    using LLParsers.Arithmetic.Lexer;
     using NUnit.Framework;
 
     [TestFixture()]
@@ -18,7 +19,6 @@ namespace GrajaProject.UnitTests.LLParser
         public void TestInputForOnlySingleNumber()
         {
             var res = PolishNotation.PostFixFormat("3");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
@@ -28,7 +28,6 @@ namespace GrajaProject.UnitTests.LLParser
         public void TestInputForOnlySingleNumberWithSingleOperator()
         {
             var res = PolishNotation.PostFixFormat("3+");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(false, result);
@@ -39,7 +38,6 @@ namespace GrajaProject.UnitTests.LLParser
         public void TestInputForOnlySingleNumberWithSingleOperatorWithBrace()
         {
             var res = PolishNotation.PostFixFormat("(3+");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(false, result);
@@ -51,7 +49,6 @@ namespace GrajaProject.UnitTests.LLParser
         {
 
             var res = PolishNotation.PostFixFormat("(3)");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
@@ -63,14 +60,10 @@ namespace GrajaProject.UnitTests.LLParser
         [Test]
         public void TestInputForAdditionTwoNumbers()
         {
-
             var res = PolishNotation.PostFixFormat("3+3");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
-
-
         }
 
 
@@ -78,11 +71,9 @@ namespace GrajaProject.UnitTests.LLParser
         public void TestInputForAdditionTwoNumbersInBrackets()
         {
             var res = PolishNotation.PostFixFormat("(3+3)");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
-
         }
 
 
@@ -90,7 +81,6 @@ namespace GrajaProject.UnitTests.LLParser
         public void TestInputForAdditionTwoNumbersInBracketsWithExtraOperator()
         {
             var res = PolishNotation.PostFixFormat("(5+2)+3");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
@@ -101,24 +91,17 @@ namespace GrajaProject.UnitTests.LLParser
         [Test]
         public void TestInputForOperatorInParentheses()
         {
-
             var res = PolishNotation.PostFixFormat("(+)");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(false, result);
-
-
-   
         }
 
 
         [Test]
         public void TestInputForMultipleSameOperator()
         {
-            string testString = "3--";
             var res = PolishNotation.PostFixFormat("3--");
-
             var result = PolishNotation.IsParseable(res);
             Assert.AreEqual(false, result);
 
@@ -130,12 +113,9 @@ namespace GrajaProject.UnitTests.LLParser
         {
 
             var res = PolishNotation.PostFixFormat("3-(33)-");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(false, result);
-
-
         }
 
 
@@ -144,7 +124,6 @@ namespace GrajaProject.UnitTests.LLParser
         {
 
             var res = PolishNotation.PostFixFormat("(3+3)++");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(false, result);
@@ -157,7 +136,6 @@ namespace GrajaProject.UnitTests.LLParser
         {
 
             var res = PolishNotation.PostFixFormat("2+3+3");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
@@ -170,7 +148,6 @@ namespace GrajaProject.UnitTests.LLParser
         {
 
             var res = PolishNotation.PostFixFormat("3+3+3+3");
-
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);

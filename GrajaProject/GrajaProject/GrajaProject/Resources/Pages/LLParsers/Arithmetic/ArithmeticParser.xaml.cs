@@ -6,13 +6,15 @@
 // Code behind for Arithmetic parser page
 //--------------------------------------------------------------------------------
 
+using LLParsers.Arithmetic.Parser;
+
 namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 {
-    using global::LLParsers.Arithmetic.Lexer;
     using System;
     using System.Threading.Tasks;
     using Xamarin.Forms;
     using Xamarin.Forms.Xaml;
+
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArithmeticParser : ContentPage

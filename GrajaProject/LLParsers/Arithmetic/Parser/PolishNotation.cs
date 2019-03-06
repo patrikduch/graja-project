@@ -6,7 +6,9 @@
 // Reverse polish notation implementation checker
 //--------------------------------------------------------------------------------
 
-namespace LLParsers.Arithmetic.Lexer
+using StringManipulation;
+
+namespace LLParsers.Arithmetic.Parser
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -17,19 +19,12 @@ namespace LLParsers.Arithmetic.Lexer
         #region Fields 
         private static bool _isParseable;
         #endregion
-
-        private static IEnumerable<string> RemoveEmptyElements(string[] inputStrings)
-        {
-            foreach (var inputString in inputStrings)
-            {
-
-                if (!inputString.Equals(""))
-                {
-                    yield return inputString;
-                }
-            }
-        }
-
+        #region Methods
+        /// <summary>
+        /// Checking the parseable status of specific string representation
+        /// </summary>
+        /// <param name="input">String that will be tested</param>
+        /// <returns></returns>
         public static bool IsParseable(string input)
         {
             // Number of brackets are not same
@@ -42,7 +37,7 @@ namespace LLParsers.Arithmetic.Lexer
 
             // Optimalize array
 
-            res = RemoveEmptyElements(res).ToArray();
+            res = StringHelper.RemoveEmptyElements(res).ToArray();
 
             // Processing operands and operators
 
@@ -60,12 +55,17 @@ namespace LLParsers.Arithmetic.Lexer
             }
 
             // Parser process
-            Parse(operandsStack, operatorsStack);
+            ParseProcess(operandsStack, operatorsStack);
 
             return _isParseable;
         }
 
-        private static void Parse(Stack<string> first, Stack<string> second)
+        /// <summary>
+        /// Parsing process that save its status to the private field
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        private static void ParseProcess(Stack<string> first, Stack<string> second)
         {
 
             if (first.Count == 1 && second.Count == 0)
@@ -114,6 +114,12 @@ namespace LLParsers.Arithmetic.Lexer
             _isParseable = true;
         }
 
+
+        /// <summary>
+        /// Transform string input to the correct format
+        /// </summary>
+        /// <param name="input">String input</param>
+        /// <returns></returns>
         private static string CorrectStringFormat(string input)
         {
             var sb = new StringBuilder();
@@ -129,19 +135,29 @@ namespace LLParsers.Arithmetic.Lexer
                 }
                 sb.Append(input[i]);
             }
-            var result  = sb.ToString();
+            var result = sb.ToString();
 
             return CheckParity(result) ? result : null;
         }
 
+        /// <summary>
+        /// Transformation to the PostFix from Infix format
+        /// </summary>
+        /// <param name="input">String in infix format</param>
+        /// <returns></returns>
         public static string PostFixFormat(string input)
         {
             var res = DeleteBrackets(input);
 
-            var enumerable= res as char[] ?? res.ToArray();
+            var enumerable = res as char[] ?? res.ToArray();
             return CorrectStringFormat(new string(enumerable.ToArray())).Equals("") ? null : CorrectStringFormat(new string(enumerable.ToArray()));
         }
 
+        /// <summary>
+        /// Checker of bracket parity
+        /// </summary>
+        /// <param name="input">String which will be tested</param>
+        /// <returns></returns>
         private static bool CheckParity(string input)
         {
             var leftBraceCount = 0;
@@ -164,23 +180,31 @@ namespace LLParsers.Arithmetic.Lexer
 
         }
 
-        private static IEnumerable<char> DeleteBrackets(string input)
+        /// <summary>
+        /// Removal of brackets from string inputString if its parity is met
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
+        private static IEnumerable<char> DeleteBrackets(string inputString)
         {
-            if (!CheckParity(input)) yield break;
-            foreach (var t in input)
+            if (!CheckParity(inputString)) yield break;
+            foreach (var element in inputString)
             {
-                switch (t)
+                switch (element)
                 {
                     case '(':
                     case ')':
                         continue;
                     default:
-                        yield return t;
+                        yield return element;
                         break;
                 }
             }
 
 
         }
+
+
+        #endregion
     }
 }

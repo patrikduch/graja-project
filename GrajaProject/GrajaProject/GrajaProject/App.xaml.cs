@@ -1,11 +1,12 @@
-﻿using System;
-using GrajaProjekt.Resources.Pages.LLParsers.Arithmetic;
-using Xamarin.Forms;
+﻿
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GrajaProject
 {
+    using GrajaProjekt.Resources.Pages.LLParsers.Arithmetic;
+    using Xamarin.Forms;
+
     public partial class App : Application
     {
         public App()
