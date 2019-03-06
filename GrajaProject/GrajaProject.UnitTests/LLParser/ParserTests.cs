@@ -3,7 +3,7 @@
 //     Copyright 2017 (c) Patrikduch.com
 // </copyright>
 // <author>Patrik Duch</author>
-// Unit test for lexer functionality
+// Unit test for parser functionality
 //--------------------------------------------------------------------------------
 
 namespace GrajaProject.UnitTests.LLParser
@@ -12,7 +12,7 @@ namespace GrajaProject.UnitTests.LLParser
     using NUnit.Framework;
 
     [TestFixture()]
-    public class LexerTests
+    public class ParserTests
     {
         [Test]
         public void TestInputForOnlySingleNumber()

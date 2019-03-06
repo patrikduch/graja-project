@@ -14,7 +14,9 @@ namespace LLParsers.Arithmetic.Lexer
 
     public class PolishNotation
     {
+        #region Fields 
         private static bool _isParseable;
+        #endregion
 
         private static IEnumerable<string> RemoveEmptyElements(string[] inputStrings)
         {
@@ -27,7 +29,6 @@ namespace LLParsers.Arithmetic.Lexer
                 }
             }
         }
-
 
         public static bool IsParseable(string input)
         {
@@ -133,9 +134,6 @@ namespace LLParsers.Arithmetic.Lexer
             return CheckParity(result) ? result : null;
         }
 
-
-
-
         public static string PostFixFormat(string input)
         {
             var res = DeleteBrackets(input);
@@ -143,7 +141,6 @@ namespace LLParsers.Arithmetic.Lexer
             var enumerable= res as char[] ?? res.ToArray();
             return CorrectStringFormat(new string(enumerable.ToArray())).Equals("") ? null : CorrectStringFormat(new string(enumerable.ToArray()));
         }
-
 
         private static bool CheckParity(string input)
         {
@@ -167,7 +164,6 @@ namespace LLParsers.Arithmetic.Lexer
 
         }
 
-
         private static IEnumerable<char> DeleteBrackets(string input)
         {
             if (!CheckParity(input)) yield break;
@@ -186,9 +182,5 @@ namespace LLParsers.Arithmetic.Lexer
 
 
         }
-
-
-
-
     }
 }
