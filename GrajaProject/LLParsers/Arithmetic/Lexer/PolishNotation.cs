@@ -14,6 +14,8 @@ namespace LLParsers.Arithmetic.Lexer
 
     public class PolishNotation
     {
+        private static bool _isParseable;
+
         private static IEnumerable<string> RemoveEmptyElements(string[] inputStrings)
         {
             foreach (var inputString in inputStrings)
@@ -32,10 +34,8 @@ namespace LLParsers.Arithmetic.Lexer
             // Number of brackets are not same
             if (input == null) return false;
 
-
-            Stack<string> operatorsStack = new Stack<string>();
-            Stack<string> operandsStack = new Stack<string>();
-
+            var operatorsStack = new Stack<string>();
+            var operandsStack = new Stack<string>();
 
             var res = input.Split(' ');
 
@@ -43,13 +43,11 @@ namespace LLParsers.Arithmetic.Lexer
 
             res = RemoveEmptyElements(res).ToArray();
 
-
-
             // Processing operands and operators
 
             foreach (var i in res)
             {
-                if (i == "+" || i == "-")
+                if (i == "+" || i == "-" || i == "*" || i == "/")
                 {
                     operatorsStack.Push(i);
                 }
@@ -60,86 +58,68 @@ namespace LLParsers.Arithmetic.Lexer
 
             }
 
-            if (operandsStack.Count == 0 && operatorsStack.Count > 0) return false;
+            // Parser process
+            Parse(operandsStack, operatorsStack);
 
-            // 3+3+ situation
-            if (operandsStack.Count == operatorsStack.Count) return false;
+            return _isParseable;
+        }
 
+        private static void Parse(Stack<string> first, Stack<string> second)
+        {
 
-            // Evaluation
-
-            Stack<string> resultOperands = new Stack<string>();
-
-            for (int i = 0; i < operatorsStack.Count; i++)
+            if (first.Count == 1 && second.Count == 0)
             {
-
-                if (operandsStack.Count > 0)
-                {
-                    if (operandsStack.Count >= 1 && operandsStack.Count <= 1)
-                    {
-                        return false;
-                    }
-
-                    if (operandsStack.Count != 1)
-                    {
-
-                        try
-                        {
-                            int.TryParse(operandsStack.Pop(), out var x);
-                            int.TryParse(operandsStack.Pop(), out var y);
-
-                            // Delete top of stack with operators
-                            operatorsStack.Pop();
-
-                            int result = x + y;
-
-                            resultOperands.Push(result.ToString());
-                        }
-
-                        catch (System.InvalidOperationException)
-                        {
-
-                            return false;
-                        }
-
-                    }
-                    else
-                    {
-                        int.TryParse(operandsStack.Pop(), out int x);
-
-                        resultOperands.Push(x.ToString());
-                    }
-
-
-
-
-
-
-                }
-                else
-                {
-                    operandsStack.Push(operandsStack.ElementAtOrDefault(i));
-                }
-
+                _isParseable = true;
+                return;
             }
 
+            while (second.Count != 0)
+            {
+                if (first.Count <= 1)
+                {
+                    _isParseable = false;
+                    return;
+                }
 
-            // If not popping is required
-            if (operatorsStack.Count == 0 || operandsStack.Count > 0) return true;
+                // Invalid set of operands and operators
+                if (first.Count == 0 && second.Count != 0)
+                {
+                    _isParseable = false;
+                    return;
+                }
 
-            return operandsStack.Count == 0;
+                if (first.Count == 0) break;
 
+                int.TryParse(first.Pop(), out var x);
 
+                if (first.Count != 0)
+                {
+                    int.TryParse(first.Pop(), out var y);
 
+                    if (first.Count == 0)
+                    {
+                        // Delete operator
+                        second.Pop();
+                        continue; // Next iteration
+                    }
+
+                    first.Push(y.ToString());
+                }
+
+                // Delete operator
+                second.Pop();
+            }
+
+            _isParseable = true;
         }
 
         private static string CorrectStringFormat(string input)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == '-' || input[i] == '+' || input[i] == '/')
+                if (input[i] == '-' || input[i] == '+' || input[i] == '/' || input[i] == '*')
                 {
                     sb.Append(' ');
                     sb.Append(input[i]);
@@ -159,7 +139,9 @@ namespace LLParsers.Arithmetic.Lexer
         public static string PostFixFormat(string input)
         {
             var res = DeleteBrackets(input);
-            return CorrectStringFormat(new string(res.ToArray()));
+
+            var enumerable= res as char[] ?? res.ToArray();
+            return CorrectStringFormat(new string(enumerable.ToArray())).Equals("") ? null : CorrectStringFormat(new string(enumerable.ToArray()));
         }
 
 
@@ -188,25 +170,21 @@ namespace LLParsers.Arithmetic.Lexer
 
         private static IEnumerable<char> DeleteBrackets(string input)
         {
-            if (CheckParity(input))
+            if (!CheckParity(input)) yield break;
+            foreach (var t in input)
             {
-
-
-                foreach (var t in input)
+                switch (t)
                 {
-                    switch (t)
-                    {
-                        case '(':
-                        case ')':
-                            continue;
-                        default:
-                            yield return t;
-                            break;
-                    }
+                    case '(':
+                    case ')':
+                        continue;
+                    default:
+                        yield return t;
+                        break;
                 }
             }
 
-           
+
         }
 
 

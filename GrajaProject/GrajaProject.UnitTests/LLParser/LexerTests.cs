@@ -5,13 +5,10 @@
 // <author>Patrik Duch</author>
 // Unit test for lexer functionality
 //--------------------------------------------------------------------------------
-using LLParser;
-using LLParser.Lexer;
-using LLParsers.Arithmetic;
-using LLParsers.Arithmetic.Lexer;
 
 namespace GrajaProject.UnitTests.LLParser
 {
+    using LLParsers.Arithmetic.Lexer;
     using NUnit.Framework;
 
     [TestFixture()]
@@ -25,6 +22,27 @@ namespace GrajaProject.UnitTests.LLParser
             var result = PolishNotation.IsParseable(res);
 
             Assert.AreEqual(true, result);
+        }
+
+        [Test]
+        public void TestInputForOnlySingleNumberWithSingleOperator()
+        {
+            var res = PolishNotation.PostFixFormat("3+");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(false, result);
+        }
+
+
+        [Test]
+        public void TestInputForOnlySingleNumberWithSingleOperatorWithBrace()
+        {
+            var res = PolishNotation.PostFixFormat("(3+");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(false, result);
         }
 
 
@@ -120,6 +138,45 @@ namespace GrajaProject.UnitTests.LLParser
 
         }
 
+
+        [Test]
+        public void TestInputForMultipleSameOperations()
+        {
+
+            var res = PolishNotation.PostFixFormat("(3+3)++");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(false, result);
+
+
+        }
+
+        [Test]
+        public void TestInputForBiggerLength()
+        {
+
+            var res = PolishNotation.PostFixFormat("2+3+3");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
+
+
+        }
+
+        [Test]
+        public void TestInputForMoreBiggerLength()
+        {
+
+            var res = PolishNotation.PostFixFormat("3+3+3+3");
+
+            var result = PolishNotation.IsParseable(res);
+
+            Assert.AreEqual(true, result);
+
+
+        }
 
 
 

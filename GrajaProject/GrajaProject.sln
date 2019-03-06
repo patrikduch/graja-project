@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LLParsers", "LLParsers\LLPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrajaProject.UnitTests", "GrajaProject.UnitTests\GrajaProject.UnitTests.csproj", "{6A61B687-7D94-4D00-A01C-16BB12D51B05}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile projects", "Mobile projects", "{4AC74E05-EF61-49E1-80FD-DF958F11B9F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test projects", "Test projects", "{8B6E65F6-7002-4EB0-ADF9-FF3ABB9A02B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper Projects", "Helper Projects", "{91EC6788-DF2A-4293-B712-8BB300A11A4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -188,6 +194,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C759B7E9-1D33-4388-9F12-D7690AD97735} = {4AC74E05-EF61-49E1-80FD-DF958F11B9F3}
+		{4C09B878-7303-465B-83B6-8822770CE333} = {4AC74E05-EF61-49E1-80FD-DF958F11B9F3}
+		{26CDD390-82BF-41EE-A2D1-81FF056C3C53} = {4AC74E05-EF61-49E1-80FD-DF958F11B9F3}
+		{575ACC74-CB00-4E45-805E-4D83B0A84A04} = {91EC6788-DF2A-4293-B712-8BB300A11A4E}
+		{6A61B687-7D94-4D00-A01C-16BB12D51B05} = {8B6E65F6-7002-4EB0-ADF9-FF3ABB9A02B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {307E160C-3E4C-4DC7-81F6-AC2DD18ABE5F}
