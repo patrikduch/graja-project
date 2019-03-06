@@ -110,15 +110,12 @@ namespace GrajaProject.UnitTests.LLParser
         [Test]
         public void TestInputForOperationOnToParanthese()
         {
-            string testString = "3-33";
-
-
-
 
             var res = PolishNotation.PostFixFormat("3-(33)-");
 
             var result = PolishNotation.IsParseable(res);
 
+            Assert.AreEqual(false, result);
 
 
         }

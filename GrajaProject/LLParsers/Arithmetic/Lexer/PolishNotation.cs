@@ -5,6 +5,7 @@
 // <author>Patrik Duch</author>
 // Reverse polish notation implementation checker
 //--------------------------------------------------------------------------------
+
 namespace LLParsers.Arithmetic.Lexer
 {
     using System.Collections.Generic;
@@ -28,6 +29,10 @@ namespace LLParsers.Arithmetic.Lexer
 
         public static bool IsParseable(string input)
         {
+            // Number of brackets are not same
+            if (input == null) return false;
+
+
             Stack<string> operatorsStack = new Stack<string>();
             Stack<string> operandsStack = new Stack<string>();
 
@@ -61,7 +66,7 @@ namespace LLParsers.Arithmetic.Lexer
             if (operandsStack.Count == operatorsStack.Count) return false;
 
 
-        // Evaluation
+            // Evaluation
 
             Stack<string> resultOperands = new Stack<string>();
 
@@ -134,11 +139,6 @@ namespace LLParsers.Arithmetic.Lexer
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == '(' || input[i] == ')') continue;
-
-
-                // Count number of brackets
-
                 if (input[i] == '-' || input[i] == '+' || input[i] == '/')
                 {
                     sb.Append(' ');
@@ -148,7 +148,9 @@ namespace LLParsers.Arithmetic.Lexer
                 }
                 sb.Append(input[i]);
             }
-            return sb.ToString();
+            var result  = sb.ToString();
+
+            return CheckParity(result) ? result : null;
         }
 
 
@@ -156,9 +158,59 @@ namespace LLParsers.Arithmetic.Lexer
 
         public static string PostFixFormat(string input)
         {
-            return CorrectStringFormat(input);
+            var res = DeleteBrackets(input);
+            return CorrectStringFormat(new string(res.ToArray()));
         }
 
-        
+
+        private static bool CheckParity(string input)
+        {
+            var leftBraceCount = 0;
+            var rightBraceCount = 0;
+
+            foreach (var element in input)
+            {
+                switch (element)
+                {
+                    case '(':
+                        leftBraceCount++;
+                        break;
+                    case ')':
+                        rightBraceCount++;
+                        break;
+                }
+            }
+
+            return rightBraceCount == leftBraceCount;
+
+        }
+
+
+        private static IEnumerable<char> DeleteBrackets(string input)
+        {
+            if (CheckParity(input))
+            {
+
+
+                foreach (var t in input)
+                {
+                    switch (t)
+                    {
+                        case '(':
+                        case ')':
+                            continue;
+                        default:
+                            yield return t;
+                            break;
+                    }
+                }
+            }
+
+           
+        }
+
+
+
+
     }
 }
