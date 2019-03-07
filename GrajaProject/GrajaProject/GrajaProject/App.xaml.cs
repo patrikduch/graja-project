@@ -1,5 +1,6 @@
 ﻿
 
+using System.Collections;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -14,7 +15,13 @@ namespace GrajaProject
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new NavigationPage(new HomePage()
+            {
+                BackgroundColor = Color.White
+            })
+            {
+                BarBackgroundColor = Color.FromHex("#20c997")
+            };
         }
 
         protected override void OnStart()
@@ -31,5 +38,6 @@ namespace GrajaProject
         {
             // Handle when your app resumes
         }
+
     }
 }

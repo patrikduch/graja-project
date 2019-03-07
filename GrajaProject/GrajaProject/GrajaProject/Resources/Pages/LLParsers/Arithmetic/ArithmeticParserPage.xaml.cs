@@ -65,5 +65,15 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
         }
 
 
+        /// <summary>
+        /// Disable mobile back button functionality
+        /// </summary>
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
+
+
     }
 }

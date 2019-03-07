@@ -21,5 +21,14 @@ namespace GrajaProject.Resources.Pages
         {
             await Navigation.PushAsync(new ArithmeticParserPage());
         }
+
+        /// <summary>
+        /// Disable mobile back button functionality
+        /// </summary>
+        /// <returns></returns>
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }
