@@ -3,13 +3,16 @@
 //     Copyright 2019 (c) Patrikduch.com
 // </copyright>
 // <author>Patrik Duch</author>
-// Helper for string maniupulations
+// Helper for string manipulations
 //--------------------------------------------------------------------------------
 namespace StringManipulation
 {
     using System;
     using System.Collections.Generic;
 
+    /// <summary>
+    /// Helper for string manipulations
+    /// </summary>
     public class StringHelper
     {
         public static IEnumerable<string> RemoveEmptyElements(string[] inputStrings)

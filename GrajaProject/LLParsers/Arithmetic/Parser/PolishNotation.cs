@@ -14,11 +14,15 @@ namespace LLParsers.Arithmetic.Parser
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// Implementation of Polish reversed notation
+    /// </summary>
     public class PolishNotation
     {
         #region Fields 
         private static bool _isParseable;
         #endregion
+
         #region Methods
         /// <summary>
         /// Checking the parseable status of specific string representation

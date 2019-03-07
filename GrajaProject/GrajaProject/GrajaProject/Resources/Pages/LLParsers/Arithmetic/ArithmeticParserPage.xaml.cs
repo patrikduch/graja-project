@@ -19,13 +19,17 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ArithmeticParserPage : ContentPage
 	{
-
-		public ArithmeticParserPage ()
+        #region Constructors
+        /// <summary>
+        /// Main constructor for arithmetic parser page
+        /// </summary>
+        public ArithmeticParserPage ()
 		{
 			InitializeComponent ();
         }
+        #endregion
 
-
+        #region Methods
         async void Handle_Clicked(object sender, System.EventArgs e)
         {
             await Navigation.PopAsync();
@@ -38,7 +42,7 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
             input.Text += button.Text;
         }
 
-        private bool ParserProcess ()
+        private bool ParserProcess()
         {
             return PolishNotation.IsParseable(PolishNotation.PostFixFormat(input.Text));
         }
@@ -55,13 +59,11 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 
                 entry.BackgroundColor = isParseable ? Color.Green : Color.Red;
 
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 entry.BackgroundColor = Color.Red;
             }
-
-           
-
         }
 
 
@@ -74,6 +76,6 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
             return true;
         }
 
-
+        #endregion
     }
 }
