@@ -1,10 +1,11 @@
 ﻿
+
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GrajaProject
 {
-    using GrajaProjekt.Resources.Pages.LLParsers.Arithmetic;
+    using Resources.Pages;
     using Xamarin.Forms;
 
     public partial class App : Application
@@ -13,7 +14,7 @@ namespace GrajaProject
         {
             InitializeComponent();
 
-            MainPage = new ArithmeticParser();
+            MainPage = new NavigationPage(new HomePage());
         }
 
         protected override void OnStart()

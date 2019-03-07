@@ -24,4 +24,16 @@
     <ProjectReference Include="..\..\LLParsers\LLParsers.csproj" />
     <ProjectReference Include="..\..\StringManipulation\StringManipulation.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Pages\LLParsers\Arithmetic\ArithmeticParserPage.xaml.cs">
+      <DependentUpon>ArithmeticParserPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Pages\HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 ﻿//---------------------------------------------------------------------------------
-// <copyright file="ArithmeticParser" website="Patrikduch.com">
+// <copyright file="ArithmeticParserPage" website="Patrikduch.com">
 //     Copyright 2019 (c) Patrikduch.com
 // </copyright>
 // <author>Patrik Duch</author>
@@ -17,14 +17,21 @@ namespace GrajaProjekt.Resources.Pages.LLParsers.Arithmetic
 
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ArithmeticParser : ContentPage
+	public partial class ArithmeticParserPage : ContentPage
 	{
 
-		public ArithmeticParser ()
+		public ArithmeticParserPage ()
 		{
 			InitializeComponent ();
         }
-        
+
+
+        async void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
+
+
         private void Button_EnterInput_Event(object sender, EventArgs e)
         {
             var button = (Button)sender;
