@@ -1,2 +1,2 @@
 # GRAJA-Project
-Xamarin school project for subject: GRAJA
+Mobile application that shows basic Lexer analysis
